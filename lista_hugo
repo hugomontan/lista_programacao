@@ -30,6 +30,16 @@ c) A saída será undefined seguido de undefined
 
 d) A saída será erro em ambas as linhas que utilizam console.log
 
+RESPOSTA: 
+
+(A) 
+
+A saída será de undefined seguida de erro.
+
+(i) O console.log(x) é declarado, no entanto o x (nesse caso, escopo global), é atribuído ao valor de 5 apenas depois, logo, o retorno do console.log(x) será indefinido (undefined). 
+
+(ii) O console.log(y) tenta exibir y antes que ele seja declarado com let y = 10. Diferente de var, as variáveis declaradas com let não podem ser acessadas antes da sua linha de declaração. Isso faz com que o JavaScript gere um erro e interrompa o programa.
+
 
 **2) O seguinte código JavaScript tem um erro que impede sua execução correta. Analise e indique a opção que melhor corrige o problema. Justifique sua resposta.**
 
@@ -50,6 +60,16 @@ b) Substituir if (a || b === 0) por if (a === 0 && b === 0)
 c) Substituir if (a || b === 0) por if (a && b === 0)
 
 d) Remover completamente a verificação if (a || b === 0)
+
+RESPOSTA: 
+
+(A)
+
+Substituir por if (a === 0 || b === 0). 
+
+(i) A intenção dessa condicional dentro da função de soma é unicamente impedir que qualquer um dos números imputados seja 0, logo, em tese, ela deveria retornar ‘Erro: número inválido’ quando a ou b for 0. 
+
+(ii) No entanto, a lógica apresentada traz um problema de prioridade dentro da condicional. B === 0 é avaliado primeiro, || depois. Logo, em um exemplo como (0,3) não é dado como número inválido, uma vez que 3 será validado primeiro, retornando o if como ‘falso’ e sobressaindo ante a outra expressão. 
 
 ______
 **3) Ao executar esse código, qual será a saída no console? Indique a alternativa correta e justifique sua resposta.**
@@ -84,6 +104,14 @@ c) O código imprime 50.
 
 d) O código gera um erro.
 
+RESPOSTA:
+
+(B)
+
+O código imprime 200. 
+
+(i) No código, o switch não possui break após o case ‘eletrônico’, exatamente o inputado. Desta maneira, a estrutura discorre até o próximo break, no caso, ‘vestuário’, sobrescrevendo o valor do preço. 
+
 ______
 **4) Ao executar esse código, qual será a saída no console? Indique a alternativa correta e justifique sua resposta.**
 ```javascript
@@ -100,6 +128,15 @@ b) 6
 c) 18
 
 d) 24
+
+RESPOSTA:
+
+(D)
+
+(i) .map(x => x * 2) -> multiplicando todos os elementos do array por 2: [2, 4, 6, 8, 10]
+    .filter(x => x > 5) -> filtra o elementos do array pelos elementos maiores que 5: [6, 8, 10]
+    .reduce((a, b) => a + b, 0);  -> somando os elementos do array a partir de 0: [0+6+8+10=24]
+
 ______
 **5) Qual será o conteúdo do array lista após a execução do código? Indique a alternativa correta e justifique sua resposta.**
 
@@ -116,6 +153,15 @@ b) ["banana", "abacaxi", "manga"]
 c) ["banana", "abacaxi", "manga", "laranja"]
 
 d) ["banana", "maçã", "uva", "abacaxi", "manga"]
+
+RESPOSTA: 
+
+(C) 
+
+O array final será ["banana", "abacaxi", "manga", "laranja"].
+
+(i) O .splice (1, 2, "abacaxi", "manga") modifica o array, no caso, o primeiro argumento (1) indica o índice onde a modificação começa ("maçã"), o segundo argumento (2) indica quantos elementos serão removidos a partir do índice 1: ("maçã" e "uva"), e os elementos "abacaxi" e "manga" são inseridos no lugar dos removidos.
+
 ______
 **6) Abaixo há duas afirmações sobre herança em JavaScript. Indique a alternativa correta e justifique sua resposta**
 
@@ -130,6 +176,12 @@ b) As duas afirmações são verdadeiras, mas a segunda não justifica a primeir
 c) A primeira afirmação é verdadeira, e a segunda é falsa.
 
 d) A primeira afirmação é falsa, e a segunda é verdadeira.
+
+RESPOSTA: 
+
+(A)
+
+A herança permite o compartilhamento entre classes, substituindo eventuais repetições no código, extends permite justamente que uma classe passe métodos/propriedades.
 ______
 **7) Dado o seguinte código. Indique a alternativa correta e justifique sua resposta.**
 
@@ -173,6 +225,14 @@ c) Apenas II é verdadeira.
 
 d) Apenas I é verdadeira.
 
+RESPOSTA: 
+
+(A)
+
+Afirmativa I - Correto. A classe Funcionário herda os atributos e funções da classe mãe “Pessoa” usando o método extends corretamente.
+Afirmativa II - Correto. A classe Funcionário sobrescrever a função apresentar(), porém, ela chama corretamente a função original, não sobrescrita, da classe mãe usando super.apresentar(), o valor “super” significa, neste contexto, uma chamada a classe mãe, por isso é possível utilizar a função original.
+Afirmativa III - Incorreto. O JavaScript suporta herança de classes usando a palavra chave: `extends`.
+
 ______
 
 **8) Analise as afirmações a seguir. Indique a alternativa correta e justifique sua resposta.**
@@ -187,6 +247,33 @@ b) A asserção é verdadeira e a razão é falsa.
 c) A asserção é verdadeira e a razão é verdadeira, mas a razão não explica a asserção.
 
 d) A asserção é verdadeira e a razão é verdadeira, e a razão explica a asserção.
+
+RESPOSTA: 
+
+(B)
+
+A asserção é verdadeira, porém a razão é falsa.
+Sobre a asserção: O conceito de polimorfismo realmente permite que objetos de diferentes tipos respondam à mesma mensagem de maneiras diferentes.
+Razão: Incorreto. Infelizmente o JavaScript não possui suporte para sobrecarga, logo, se você definir funções com o mesmo nome, mesmo com parâmetros diferentes, o JavaScript só vai considerar a última função definida.
+
+Exemplo:
+```
+class Exemplo {
+  metodo(x) {
+    console.log("v1:", x);
+  }
+
+  metodo(x, y) {
+    console.log("v2:", x, y);
+  }
+}
+
+const obj = new Exemplo();
+obj.metodo(1);      // Printa: `v2: 1 undefined`
+obj.metodo(1, 2);   // Printa: ‘v2: 1 2`
+```
+
+Os dois usam o segundo método definido, logo, comprovando que sobrecarga não é suportado em JavaScript.
 
 ______
 
@@ -203,6 +290,21 @@ function somaArray(numeros) {
 }
 console.log(somaArray([1, 2, 3, 4]));
 ```
+
+RESPOSTA: 
+
+function somaArray(numeros) {
+    let soma = 0; // Inicializa a variável para armazenar a soma
+
+    for (let i = 0; i < numeros.length; i++) { // Corrigido size para length e declarado "i" 
+        soma += 2 * numeros[i]; // Com o `=` ao invés de `+=`. A variável soma estava sendo redefinida a cada execução do `for`. Agora o `+=` soma o resultado de `2 * numeros[i]` na variável `soma`
+    }
+
+    return soma; // Retorna a soma 
+}
+
+console.log(somaArray([1, 2, 3, 4])); // Esperado: (2*1) + (2*2) + (2*3) + (2*4) = 2 + 4 + 6 + 8 = 20
+
 ______
 10) Crie um exemplo prático no qual você tenha duas classes:
 
